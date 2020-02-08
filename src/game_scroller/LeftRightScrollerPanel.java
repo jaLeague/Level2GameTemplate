@@ -8,15 +8,11 @@ import javax.imageio.ImageIO;
 import javax.swing.JPanel;
 import javax.swing.Timer;
 
-public class LeftRightScrollerPanel extends JPanel implements ActionListener {
-	private BufferedImage background;
-	private int backgroundWidth = 0;
-	private int frameWidth = Scroller.FRAME_WIDTH;
-	private int frameHeight = Scroller.FRAME_HEIGHT;
+public class LeftRightScrollerPanel extends ScrollerPanel {
+
 	private int x1=0;
-	private int x2=frameWidth;
-	private int scrollSpeed = 1;
-	private Timer drawTimer = new Timer(1000/60,this);
+	private int x2;
+
 
 	/* Left-Right Scroll */
 
@@ -29,6 +25,7 @@ public class LeftRightScrollerPanel extends JPanel implements ActionListener {
 		} catch (Exception e) {
 			System.out.println("Could not find background image");
 		}
+		x2=frameWidth;
 		drawTimer.start();
 	}
 
@@ -38,7 +35,7 @@ public class LeftRightScrollerPanel extends JPanel implements ActionListener {
 
 	}
 
-	private void moveBackground() {
+	 void moveBackground() {
 		if (x1 >= (backgroundWidth - frameWidth)) {
 			x1 = 0;
 			x2 = frameWidth;
